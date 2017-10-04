@@ -1,0 +1,33 @@
+{
+  "name": "formation",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "expect": "^1.20.2",
+    "jest-enzyme": "^3.4.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "morphism": "^0.3.4",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.0.2",
+    "prop-types": "^15.5.10",
+    "react": "next",
+    "react-dom": "next",
+    "react-error-overlay": "^2.0.2",
+    "react-redux": "^5.0.5",
+    "react-scripts-next": "1.0.0",
+    "redux": "^3.7.1",
+    "redux-axios-middleware": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
