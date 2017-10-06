@@ -6,10 +6,10 @@ class CardBilling extends Component {
     render(){
         return (
             <div className="billing">
-                <h2>Montant de la facture : {this.props.billingPrice}</h2>
-                <p>Client : {this.props.billingCustomer}</p>
-                <p>Type : {this.props.billingType}</p>
-                <p>Date : {this.props.billingDate}</p>
+                <h2>Montant de la facture : {this.props.price}</h2>
+                <p>Client : {this.props.customer}</p>
+                <p>Type : {this.props.type}</p>
+                <p>Date : {this.props.date}</p>
             </div>
         )
     }

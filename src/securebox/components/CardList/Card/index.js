@@ -5,10 +5,6 @@ import * as _ from "lodash"
 
 class Card extends Component {
 
-    shouldComponentUpdate(nextProps, nextState){
-        return nextProps.validPayment !== this.props.validPayment
-    }
-
     render(){
         return (
             <div className="card">

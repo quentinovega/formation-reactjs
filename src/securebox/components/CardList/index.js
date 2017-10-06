@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes  from "prop-types"
+import { connect } from 'react-redux'
 
 import Card from "./Card"
 import CardPayment from "./Card/CardPayment"
@@ -9,29 +11,28 @@ import * as _ from "lodash"
 class CardList extends Component {
 
     render(){
-        console.log(this.props)
+        const { cards } = this.props
+        
+        console.log("Cards du render", cards)
+
+        if(_.isEmpty(cards)){
+            return false
+        }
+
         return (
             <div className="card__list">
                 {this.props.cards.map((card, k) => {
                     return (
-                        <Card
-                            key={k}
-                            {...card}
-                        >
-                            {
-                                !_.isNull(card.paymentPrice) &&
-                                <CardPayment 
-                                    {...card}
-                                />
-                            }
+                        <Card key={k}>
+                            <CardPayment 
+                                {...card.payment}
+                            />
                             
                             <CardBilling 
-                                {...card} 
+                                {...card.billing}
                             />
                             <CardValidPayment
-                                index={k}
-                                handleChangeCard={this.props.handleChangeCard}
-                                {...card}
+                                card={card}
                             />
                         </Card>
                     )
@@ -42,5 +43,14 @@ class CardList extends Component {
    
 }
 
-export default CardList;
+CardList.propTypes = {
+    cards : PropTypes.array.isRequired
+}
 
+function mapStateToProps(state){
+    return {
+        cards: _.orderBy(state.Card.cards, "order", "asc")
+    }
+}
+
+export default connect(mapStateToProps)(CardList);
