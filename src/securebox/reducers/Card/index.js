@@ -9,33 +9,31 @@ import initialState from "./initialState"
 
 function card(
     state = initialState,
-    action
+    { payload, type }
 ) {    
-    switch (action.type) {
+    switch (type) {
         case CHANGE_CARD:
-            return _.extend({}, state, {
-                cards : _.map(state.cards, (card) => { 
-                    if(card.id !== action.payload.id){
-                        return card
-                    }
-                    return _.extend({}, card)
-                })
-            })
+            return {
+                ...state,
+                cards : _.map(state.cards, card => card.id !== payload.id ? card : payload)
+            }
         case ADD_CARD:
-            let card = _.extend({}, action.payload, {
+            let card = _.extend({}, payload, {
                 id: state.cards.length,
                 order: state.cards.length,
-                billing: _.extend(action.payload.billing, {
+                billing: _.extend(payload.billing, {
                     date : moment().format("d-m-Y ")
                 }),
-                payment: _.extend(action.payload.payment, {
+                payment: _.extend(payload.payment, {
                     date : moment().format("d-m-Y ")
                 })
             })
 
-            return _.extend({}, state ,{
+            return {
+                ...state,
                 cards : _.flatten([state.cards,card])
-            })
+            }
+
         default:
             return state
     }
