@@ -19,10 +19,6 @@ class AddPayment extends Component {
         const value  = target.type === 'checkbox' ? target.checked : target.value;
         const name   = target.name;
         
-        this.setState({
-            [name] : value
-        })
-
         this.props.handleFormChange("payment", name, value)
     }
 
@@ -39,7 +35,6 @@ class AddPayment extends Component {
                         id="type"
                         name="type"
                         onChange={this.handleFormChange}
-                        value={this.state.type}
                     />
                 </div>
                 <div className="form__item">
@@ -51,7 +46,6 @@ class AddPayment extends Component {
                         id="price"
                         name="price"
                         onChange={this.handleFormChange}
-                        value={this.state.price}
                     />
                 </div>
             </div>

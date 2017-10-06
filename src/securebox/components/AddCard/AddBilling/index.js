@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-
+import * as _ from "lodash"
+import {
+    LIST_TYPE,
+    TYPE_ORDO
+} from "../../../constants/Card/type"
 import "./index.css"
 
 class AddBilling extends Component {
@@ -8,7 +12,7 @@ class AddBilling extends Component {
 
         this.state  = {
             price : 0,
-            type: "",
+            type: TYPE_ORDO,
             customer: ""
         }
 
@@ -19,17 +23,12 @@ class AddBilling extends Component {
         const target = event.target;
         const value  = target.type === 'checkbox' ? target.checked : target.value;
         const name   = target.name;
-        
-        this.setState({
-            [name] : value
-        })
 
         this.props.handleFormChange("billing", name, value)
     }
 
     render(){
       
-
         return (
             <div className="form__card__billing">
                 <div className="form__item">
@@ -41,20 +40,27 @@ class AddBilling extends Component {
                         id="customer"
                         name="customer"
                         onChange={this.handleFormChange}
-                        value={this.state.customer}
                     />
                 </div>
                 <div className="form__item">
                     <label htmlFor="type">
                         Type : 
                     </label>
-                    <input
-                        type="text"
-                        id="type"
-                        name="type"
+                    <select
                         onChange={this.handleFormChange}
-                        value={this.state.type}
-                    />
+                        name="type"
+                    >
+                        {LIST_TYPE.map((type, k) => {
+                            return (
+                                <option
+                                    key={k} 
+                                    value={type.key}
+                                >
+                                    {type.label}
+                                </option>
+                            )
+                        })}
+                    </select>
                 </div>
                 <div className="form__item">
                     <label htmlFor="customer">
@@ -65,7 +71,6 @@ class AddBilling extends Component {
                         id="price"
                         name="price"
                         onChange={this.handleFormChange}
-                        value={this.state.price}
                     />
                 </div>
             </div>

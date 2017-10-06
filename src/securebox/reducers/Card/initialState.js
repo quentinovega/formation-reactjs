@@ -14,7 +14,7 @@ export default {
             order: 0,
             billing : {
                 price : _.random(1,100),
-                type : _.first(_.filter(LIST_TYPE, {key : TYPE_TIER})),
+                type : TYPE_TIER,
                 date : moment().format("MMM Do YY"),
                 customer: "Tony Stark",
             },
@@ -30,7 +30,7 @@ export default {
             order: 1,
             billing : {
                 price : _.random(1,100),
-                type : _.first(_.filter(LIST_TYPE, {key : TYPE_ORDO})),
+                type :TYPE_ORDO,
                 date : moment().format("MMM Do YY"),
                 customer: "Tony Stark",
             },

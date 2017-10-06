@@ -17,14 +17,15 @@ function card(
                 ...state,
                 cards : _.map(state.cards, card => card.id !== payload.id ? card : payload)
             }
+
         case ADD_CARD:
             let card = _.extend({}, payload, {
                 id: state.cards.length,
                 order: state.cards.length,
-                billing: _.extend(payload.billing, {
+                billing: _.extend({}, payload.billing, {
                     date : moment().format("d-m-Y ")
                 }),
-                payment: _.extend(payload.payment, {
+                payment: _.extend({}, payload.payment, {
                     date : moment().format("d-m-Y ")
                 })
             })

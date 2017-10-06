@@ -23,7 +23,7 @@ class CardFilter extends Component {
     render(){
 
         const _classAll = classNames({
-            "filter--active": this.props.filter === "all"
+            "filter--active": this.props.filter === "all",
         }, "filter")
 
         return (

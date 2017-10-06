@@ -21,6 +21,7 @@ class CardList extends Component {
         return (
             <div className="card__list">
                 {this.props.children}
+                
                 {this.props.cards.map((card, k) => {
                     return (
                         <Card key={k}>
@@ -36,7 +37,8 @@ class CardList extends Component {
                             />
                         </Card>
                     )
-                })}     
+                })}
+
             </div>
         )
     }
@@ -63,7 +65,7 @@ function mapStateToProps(state, ownProps){
                         return true
                     }
 
-                    return card.billing.type.key === ownProps.filter
+                    return card.billing.type === ownProps.filter
                 })
                 .orderBy("order", "asc")
                 .value()
