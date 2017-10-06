@@ -1,0 +1,14 @@
+.form__card__billing {
+  border: 1px solid red;
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 10px; }
+  .form__card__billing > div {
+    margin: 10px; }
+  .form__card__billing label {
+    margin-right: 15px; }
+  .form__card__billing:before {
+    content: "Card Payment ";
+    font-weight: bold;
+    border-bottom: 1px solid green; }

@@ -8,6 +8,7 @@ import {
 
 import AddBilling from "./AddBilling"
 import AddPayment from "./AddPayment"
+import "./index.css"
 
 class AddCard extends Component {
     constructor(props){

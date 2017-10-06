@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import "./index.css"
+
 class AddBilling extends Component {
     constructor(props){
         super(props)

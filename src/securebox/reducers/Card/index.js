@@ -25,10 +25,14 @@ function card(
             let card = _.extend({}, action.payload, {
                 id: state.cards.length,
                 order: state.cards.length,
-                billing: {
+                billing: _.extend(action.payload.billing, {
                     date : moment().format("d-m-Y ")
-                }
+                }),
+                payment: _.extend(action.payload.payment, {
+                    date : moment().format("d-m-Y ")
+                })
             })
+
             return _.extend({}, state ,{
                 cards : _.flatten([state.cards,card])
             })

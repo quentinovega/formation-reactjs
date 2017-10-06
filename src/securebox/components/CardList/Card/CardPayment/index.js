@@ -4,7 +4,7 @@ class CardPayment extends Component {
 
     render(){
         return (
-            <div className="payment">
+            <div className="card__payment">
                 <h2>Montant du paiement : {this.props.price}</h2>
                 <p>Type : {this.props.type.label}</p>
                 <p>Date : {this.props.date}</p>
