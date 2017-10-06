@@ -13,7 +13,6 @@ class CardList extends Component {
     render(){
         const { cards } = this.props
         
-        console.log("Cards du render", cards)
 
         if(_.isEmpty(cards)){
             return false
@@ -21,6 +20,7 @@ class CardList extends Component {
 
         return (
             <div className="card__list">
+                {this.props.children}
                 {this.props.cards.map((card, k) => {
                     return (
                         <Card key={k}>
@@ -44,12 +44,29 @@ class CardList extends Component {
 }
 
 CardList.propTypes = {
-    cards : PropTypes.array.isRequired
+    cards : PropTypes.array.isRequired,
+    filter : PropTypes.string
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state, ownProps){
+
+    if(_.isUndefined(ownProps.filter)){
+        return {
+            cards : _.orderBy(state.Card.cards, "order", "asc")
+        }
+    }
+
     return {
-        cards: _.orderBy(state.Card.cards, "order", "asc")
+        cards: _.chain(state.Card.cards)
+                .filter((card) => {
+                    if(ownProps.filter === "all"){
+                        return true
+                    }
+
+                    return card.billing.type.key === ownProps.filter
+                })
+                .orderBy("order", "asc")
+                .value()
     }
 }
 

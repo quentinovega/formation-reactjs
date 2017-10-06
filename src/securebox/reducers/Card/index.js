@@ -1,9 +1,10 @@
 import * as _ from "lodash"
-
+import moment from "moment"
 import {
     CHANGE_CARD,
     ADD_CARD
 } from "../../constants/Card"
+
 import initialState from "./initialState"
 
 function card(
@@ -23,10 +24,13 @@ function card(
         case ADD_CARD:
             let card = _.extend({}, action.payload, {
                 id: state.cards.length,
-                order: state.cards.length
+                order: state.cards.length,
+                billing: {
+                    date : moment().format("d-m-Y ")
+                }
             })
             return _.extend({}, state ,{
-                cards : _.flatten([state.cards,action.payload])
+                cards : _.flatten([state.cards,card])
             })
         default:
             return state

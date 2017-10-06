@@ -1,0 +1,16 @@
+.card__list__filter{
+    .filter{
+        display: inline-block;
+        min-width: 100px;
+        padding:20px;
+        text-align: center;
+        background-color:#2572AC;
+        color:white;
+        transition: all .2s ease-in;
+        &:hover,
+        &--active{
+            background-color:#B85531;
+            cursor: pointer;
+        }
+    }
+}

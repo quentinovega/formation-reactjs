@@ -1,6 +1,12 @@
 import * as _ from "lodash"
 import moment from "moment"
 
+import {
+    LIST_TYPE,
+    TYPE_TIER,
+    TYPE_ORDO
+} from "../../constants/Card/type"
+
 export default {
     cards : [
         {
@@ -8,7 +14,7 @@ export default {
             order: 0,
             billing : {
                 price : _.random(1,100),
-                type : "Tiers payant",
+                type : _.first(_.filter(LIST_TYPE, {key : TYPE_TIER})),
                 date : moment().format("MMM Do YY"),
                 customer: "Tony Stark",
             },
@@ -24,7 +30,7 @@ export default {
             order: 1,
             billing : {
                 price : _.random(1,100),
-                type : "Tiers payant",
+                type : _.first(_.filter(LIST_TYPE, {key : TYPE_ORDO})),
                 date : moment().format("MMM Do YY"),
                 customer: "Tony Stark",
             },

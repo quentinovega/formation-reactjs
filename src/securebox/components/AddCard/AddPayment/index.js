@@ -20,13 +20,12 @@ class AddPayment extends Component {
         this.setState({
             [name] : value
         })
-        
+
         this.props.handleFormChange("payment", name, value)
     }
 
     render(){
       
-
         return (
             <div className="form__card__payment">
                 <div className="form__item">

@@ -8,7 +8,7 @@ class CardBilling extends Component {
             <div className="billing">
                 <h2>Montant de la facture : {this.props.price}</h2>
                 <p>Client : {this.props.customer}</p>
-                <p>Type : {this.props.type}</p>
+                <p>Type : {this.props.type.label}</p>
                 <p>Date : {this.props.date}</p>
             </div>
         )
