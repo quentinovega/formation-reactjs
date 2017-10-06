@@ -53,10 +53,9 @@ class AddCard extends Component {
                     <AddBilling 
                         handleFormChange={this.handleFormChange}
                     />
-                    {/* <AddPayment 
+                    <AddPayment 
                         handleFormChange={this.handleFormChange}
-                        {...this.state.billing}
-                    /> */}
+                    />
                     <button type="submit">
                         Submit
                     </button>

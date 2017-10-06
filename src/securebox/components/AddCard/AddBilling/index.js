@@ -4,7 +4,7 @@ class AddBilling extends Component {
     constructor(props){
         super(props)
 
-        this.state = {
+        this.state  = {
             price : 0,
             type: "",
             customer: ""
