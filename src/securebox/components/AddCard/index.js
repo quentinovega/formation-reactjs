@@ -1,57 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import * as _ from "lodash"
 import { bindActionCreators } from "redux"
 import {
     addCard
 } from "../../actions/Card"
 
+import AddBilling from "./AddBilling"
+import AddPayment from "./AddPayment"
+
 class AddCard extends Component {
     constructor(props){
         super(props)
 
-        this.state = {
-            billingPrice : 0
+        this.formCard = {
+            billing : {
+                price : 0,
+                type: "",
+                customer: ""
+            },
+            payment:{
+                price: 0,
+                type: ""
+            }
         }
 
         this.handleFormChange = this.handleFormChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit     = this.handleSubmit.bind(this)
     }
 
-    handleFormChange(event){
-        const target = event.target;
-        const value  = target.type === 'checkbox' ? target.checked : target.value;
-        const name   = target.name;
-    
-        this.setState({
-          [name]: value
+    handleFormChange(type, name, value){
+        this.formCard = _.extend(this.formCard, {
+            [type]: _.extend(this.formCard[type], {
+                [name] : value
+            })
         });
     }
 
     handleSubmit(e){
         e.preventDefault()
 
-        this.props.addCard({
-            billing : {
-                price: this.state.billingPrice
-            }
-        })
+        this.props.addCard(this.formCard)
 
     }
 
     render(){
       
-
         return (
             <div className="form__card">
                 <form onSubmit={this.handleSubmit}>
 
-                    <input
-                        type="number"
-                        name="billingPrice"
-                        onChange={this.handleFormChange}
-                        value={this.state.billingPrice}
+                    <AddBilling 
+                        handleFormChange={this.handleFormChange}
                     />
+                    {/* <AddPayment 
+                        handleFormChange={this.handleFormChange}
+                        {...this.state.billing}
+                    /> */}
                     <button type="submit">
                         Submit
                     </button>
